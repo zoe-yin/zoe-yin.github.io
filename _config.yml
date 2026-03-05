@@ -1,1 +1,10 @@
-theme: jekyll-theme-minimal
+title: Zoe Yin
+description: Personal website
+url: "https://zoe-yin.github.io"
+baseurl: ""
+
+remote_theme: BDHU/minimalist
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
