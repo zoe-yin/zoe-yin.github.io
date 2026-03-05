@@ -1,0 +1,96 @@
+{% case site.color-scheme %}
+  {% when "", nil, false, 0, empty %}
+    {% assign ColorScheme = "auto" %}
+  {% else %}
+    {% assign ColorScheme = site.color-scheme %}
+{% endcase %}
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/colors-ColorScheme.css?v=" | replace: "ColorScheme", ColorScheme | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+
+    <link rel="preload" href="{{site.logo | relative_url}}" as="image">
+
+    {% include head-custom.html %}
+    {% if jekyll.environment == 'production' and site.google_analytics %}
+    {% include analytics.html %}
+    {% endif %}
+  </head>
+  <body>
+    <nav>
+      <ul>
+        {% for item in site.data.menu %}
+        <li><a class="{% if page.url == item.link %}active{% endif %}" href="{{item.link}}">{{item.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <div class="sidebar">
+        <header>
+          {% if site.logo %}
+            <img class="img-circle" src="{{site.logo | relative_url}}" alt="Logo">
+          {% endif %}
+
+          {% if site.blank_title %}
+            <h1>{{ site.title | default: site.github.repository_name }}</h1>
+          {% else %}
+
+          <!-- <a href="url">link text</a> -->
+
+          <h3><a href="https://igppweb.ucsd.edu/~hyin/">{{ site.title | default: site.github.repository_name }}</h3></a>
+          {% endif %}
+
+          {% if site.email %}
+            <p class="addr"><i class="fa-regular fa-envelope"></i>&nbsp;{{ site.email }}</p>
+          {% endif %}
+
+          <p>{{ site.description | default: site.github.project_tagline }}</p>
+
+          {% include sidebar.html %}
+
+        </header>
+
+        {% include links-mobile.html %}
+
+        <div class="sidebar-footer">
+          {%- include footer.html -%}
+        </div>
+      </div>
+      <section>
+
+      {{ content }}
+
+      <style>
+        nav ul {
+          display: flex;
+          list-style: none;
+        }
+        nav ul li {
+          margin-right: 10px;
+        }
+        nav ul li a {
+          text-decoration: none;
+          color: green;
+        }
+        nav ul li a:hover {
+          text-decoration: underline;
+        }
+        .active {
+          text-decoration: underline;
+        }
+      </style>
+      </section>
+      <footer>
+        {%- include footer.html -%}
+      </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
