@@ -4,7 +4,8 @@ description:  test
 url: "https://zoe-yin.github.io"
 baseurl: "/~hyin" # the subpath of your site, e.g. /blog
 
-remote_theme: BDHU/minimalist
+# remote_theme: BDHU/minimalist
+theme: minimalist
 
 plugins:
   - jekyll-remote-theme
